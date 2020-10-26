@@ -730,13 +730,8 @@ BOOL isExiting = FALSE;
     
     WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
     
-    NSString *userAgent = configuration.applicationNameForUserAgent;
-    if (
-        [self settingForKey:@"OverrideUserAgent"] == nil &&
-        [self settingForKey:@"AppendUserAgent"] != nil
-        ) {
-        userAgent = [NSString stringWithFormat:@"%@ %@", userAgent, [self settingForKey:@"AppendUserAgent"]];
-    }
+    NSString *userAgent = @"Mozilla/5.0 Google";
+    
     configuration.applicationNameForUserAgent = userAgent;
     configuration.userContentController = userContentController;
 #if __has_include("CDVWKProcessPoolFactory.h")
@@ -777,9 +772,9 @@ BOOL isExiting = FALSE;
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self.webViewUIDelegate;
     self.webView.backgroundColor = [UIColor whiteColor];
-    if ([self settingForKey:@"OverrideUserAgent"] != nil) {
-        self.webView.customUserAgent = [self settingForKey:@"OverrideUserAgent"];
-    }
+    
+    self.webView.customUserAgent = @"Mozilla/5.0 Google";
+
     
     self.webView.clearsContextBeforeDrawing = YES;
     self.webView.clipsToBounds = YES;
