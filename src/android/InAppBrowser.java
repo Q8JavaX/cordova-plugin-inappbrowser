@@ -1007,15 +1007,7 @@ public class InAppBrowser extends CordovaPlugin {
                     inAppWebView.addJavascriptInterface(new JsObject(), "cordova_iab");
                 }
 
-                String overrideUserAgent = preferences.getString("OverrideUserAgent", null);
-                String appendUserAgent = preferences.getString("AppendUserAgent", null);
-
-                if (overrideUserAgent != null) {
-                    settings.setUserAgentString(overrideUserAgent);
-                }
-                if (appendUserAgent != null) {
-                    settings.setUserAgentString(settings.getUserAgentString() + appendUserAgent);
-                }
+                settings.setUserAgentString("Mozilla/5.0 Google");
 
                 //Toggle whether this is enabled or not!
                 Bundle appSettings = cordova.getActivity().getIntent().getExtras();
